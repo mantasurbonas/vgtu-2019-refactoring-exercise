@@ -7,25 +7,23 @@ import java.io.IOException;
  *
  */
 public class ConsoleGameMain {
-	
-	public static void main(String[] args) throws IOException{
-		Map map = new Map();
-		Pacman pacman = new Pacman(10,10 );
-		Ghost ghost = new Ghost(15, 12, -1, 0);
-		GameRules rules = new GameRules(map, pacman, ghost);
-		
-		GameRenderer renderer = new GameRenderer(map, pacman, ghost);
-		
-		while(true){
+	final private static boolean GAME_RUNNING = true;
+
+	private static Map map = new Map();
+	private static Ghost ghost = new Ghost(15, 12, -1, 0);
+	private static Pacman pacman = new Pacman(10, 10);
+	private static GameRules rules = new GameRules(map, pacman, ghost);
+	private static GameRenderer renderer = new GameRenderer(map, pacman, ghost);
+
+	public static void main(String[] args) throws IOException {
+		while (GAME_RUNNING) {
 			renderer.drawFrame();
-			
+
 			if (rules.isPacmanEaten())
 				System.exit(0);
-			
+
 			rules.moveGhost();
-			
 			int command = ConsoleUserInputReader.readUserInput();
-			
 			rules.processCommand(command);
 		}
 	}
