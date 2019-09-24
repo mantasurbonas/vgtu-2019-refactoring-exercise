@@ -33,17 +33,17 @@ public class GameRenderer {
 
 	private String getElementToDraw(int y, int x) {
 		if (pacman.position.x == x && pacman.position.y == y) 
-			return "C";
+			return pacman.image.getImage().toString();
 		
 		if (ghost.position.x == x && ghost.position.y == y)
-			return "W";
+			return ghost.image.getImage().toString();
 			
 		int element = map.getMapElement(y, x);
 		
 		if (element == 0)
 			return " ";
 
-		return "#";
+		return map.wall.getImage().toString();
 	}
 
 }
