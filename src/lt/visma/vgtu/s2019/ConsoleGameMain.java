@@ -9,9 +9,10 @@ import java.io.IOException;
 public class ConsoleGameMain {
 	
 	public static void main(String[] args) throws IOException{
-		Map map = new Map();
-		Pacman pacman = new Pacman(10,10 );
-		Ghost ghost = new Ghost(15, 12, -1, 0);
+		// TODO load letters
+		Map map = new Map(new ElementLetterRepresentationImpl());
+		Pacman pacman = new Pacman(10,10, new ElementLetterRepresentationImpl() );
+		Ghost ghost = new Ghost(15, 12, -1, 0, new ElementLetterRepresentationImpl());
 		GameRules rules = new GameRules(map, pacman, ghost);
 		
 		GameRenderer renderer = new GameRenderer(map, pacman, ghost);

@@ -18,16 +18,16 @@ import java.io.IOException;
  */
 public class Ghost{
 	Position position;
-	BufferedImage image;
+	ElementRepresentation image;
 	
 	private int ghostDx;
 	private int ghostDy;
 	
-	Ghost (int x, int y, int dx, int dy) throws IOException {
-		image = ImageIO.read(new FileInputStream("ghost.png"));
+	Ghost (int x, int y, int dx, int dy, ElementRepresentation image){
 		this.position = new Position(x, y);
 		this.ghostDx = dx;
 		this.ghostDy= dy;
+		this.image = image;
 	}
 	
 	Position getDesiredPosition() {

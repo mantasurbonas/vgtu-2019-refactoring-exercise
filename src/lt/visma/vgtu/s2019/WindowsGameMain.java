@@ -6,7 +6,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.io.FileInputStream;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 import javax.swing.Timer;
@@ -20,19 +23,26 @@ import javax.swing.WindowConstants;
  */
 public class WindowsGameMain extends JFrame{
 
-	private Map map = new Map();
-	private Pacman pacman = new Pacman(10,10 );
-	private Ghost ghost = new Ghost(15, 12, -1, 0);
+	private Map map = new Map(new ElementImageRepresentationImpl());
+	private Pacman pacman = new Pacman(10,10, new ElementImageRepresentationImpl() );
+	private Ghost ghost = new Ghost(15, 12, -1, 0, new ElementImageRepresentationImpl());
 	private GameRules rules = new GameRules(map, pacman, ghost);
 	private Canvas canvas;
 	
 	public WindowsGameMain() throws Exception {
 		setupGameWindow();
-		canvas = new Canvas(getGraphics(), map, 20);
+		loadImages();
+		canvas = new Canvas(map, 20);
 		canvas.loadEntities(new Canvas.Entities(pacman, ghost));
 		setupEventListeners();
 
 		initializeGameTimer();
+	}
+
+	private void loadImages() throws IOException {
+		map.wall.setImage(ImageIO.read(new FileInputStream("wall.png")));
+		pacman.image.setImage(ImageIO.read(new FileInputStream("pacman-open.png")));
+		ghost.image.setImage(ImageIO.read(new FileInputStream("ghost.png")));
 	}
 
 	private void initializeGameTimer() {
@@ -58,7 +68,7 @@ public class WindowsGameMain extends JFrame{
 	@Override
 	public void paint(Graphics g) {
 		super.paint(g);
-		canvas.draw();
+		canvas.draw(g);
 	}
 
 	public static void main(String[] args) throws Exception {

@@ -3,26 +3,26 @@ package lt.visma.vgtu.s2019
 import java.awt.Graphics
 import java.awt.Image
 
-class Canvas (private val graphics: Graphics,
-              private val map: Map,
+class Canvas (private val map: Map,
               private val elementSize: Int){
 
-    var offsetX = 0
-    var offsetY = elementSize
+    //The numbers vary by system, MacOS should use X - 0, Y - elementSize, Windows is weird
+    var offsetX = elementSize / 2
+    var offsetY = elementSize + 15
 
     private var entities: Entities? = null
 
-    fun draw(){
+    fun draw(graphics: Graphics){
         for (y in 0 until map.height) {
             for (x in 0 until map.width) {
                 val image = getImage(Position(x, y))
                 if (image != null)
-                    drawElement(image, x, y)
+                    drawElement(image, x, y, graphics)
             }
         }
     }
 
-    private fun drawElement(image: Image, x: Int, y: Int){
+    private fun drawElement(image: Image, x: Int, y: Int, graphics: Graphics){
         graphics.drawImage(
                 image,
                 offsetX + x * elementSize,
@@ -34,9 +34,9 @@ class Canvas (private val graphics: Graphics,
 
     private fun getImage(position: Position): Image?{
         return when(getElementOnPosition(position)){
-            Element.Wall -> map.wallImage
-            Element.Ghost -> entities?.ghost!!.image
-            Element.Pacman -> entities?.pacman!!.image
+            Element.Wall -> map.wallImage.getImage() as Image
+            Element.Ghost -> entities?.ghost!!.image.getImage() as Image
+            Element.Pacman -> entities?.pacman!!.image.getImage() as Image
             Element.Air -> null
         }
     }
