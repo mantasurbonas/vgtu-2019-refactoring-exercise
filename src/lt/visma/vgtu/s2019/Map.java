@@ -1,5 +1,10 @@
 package lt.visma.vgtu.s2019;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.FileInputStream;
+import java.io.IOException;
+
 /***
  * dvimačio žaidimo žemėlapis (modelis).
  * 
@@ -12,7 +17,13 @@ package lt.visma.vgtu.s2019;
  */
 public class Map {
 
-	private int MAP[][] = {
+	private BufferedImage wall;
+
+	Map() throws IOException {
+		wall = ImageIO.read(new FileInputStream("wall.png"));
+	}
+
+	private int[][] gameMap = {
 			{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,},
 			{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,},
 			{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,},
@@ -45,22 +56,26 @@ public class Map {
 
 
 	public int getHeight() {
-		return MAP.length;
+		return gameMap.length;
 	}
 
 	public int getWidth() {
-		return MAP[0].length;
+		return gameMap[0].length;
 	}
 	
 	public int getMapElement(Position where) {
-		return MAP[where.y][where.x];
+		return gameMap[where.y][where.x];
 	}
 
-	public int getMapElement(int y, int x) {
-		return MAP[y][x];
+	int getMapElement(int y, int x) {
+		return gameMap[y][x];
+	}
+
+	public BufferedImage getWallImage() {
+		return wall;
 	}
 	
-	public boolean isEmpty(Position where) {
+	boolean isEmpty(Position where) {
 		return getMapElement(where) == 0;
 	}
 

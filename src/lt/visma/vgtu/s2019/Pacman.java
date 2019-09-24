@@ -1,5 +1,11 @@
 package lt.visma.vgtu.s2019;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
 /***
  *  Reprezentuoja "Pacmano" veikėjo abstrakciją.
  * 
@@ -13,11 +19,14 @@ package lt.visma.vgtu.s2019;
 public class Pacman {
 	Position position;
 
-	public Pacman(int x, int y) {
+	BufferedImage image;
+
+	Pacman(int x, int y) throws IOException {
+		image = ImageIO.read(new FileInputStream("pacman-open.png"));
 		this.position = new Position(x, y);
 	}
 
-	public void moveTo(Position where) {
+	void moveTo(Position where) {
 		position = where;
 	}
 }

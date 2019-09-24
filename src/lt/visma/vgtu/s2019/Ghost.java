@@ -1,6 +1,11 @@
 package lt.visma.vgtu.s2019;
 
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.FileInputStream;
+import java.io.IOException;
+
 /***
  *  Reprezentuoja "Vaiduokliuko" veikėjo abstrakciją.
  * 
@@ -13,25 +18,27 @@ package lt.visma.vgtu.s2019;
  */
 public class Ghost{
 	Position position;
+	BufferedImage image;
 	
-	int ghostDx = -1;
-	int ghostDy = 0;
+	private int ghostDx;
+	private int ghostDy;
 	
-	public Ghost(int x, int y, int dx, int dy) {
+	Ghost (int x, int y, int dx, int dy) throws IOException {
+		image = ImageIO.read(new FileInputStream("ghost.png"));
 		this.position = new Position(x, y);
 		this.ghostDx = dx;
 		this.ghostDy= dy;
 	}
 	
-	public Position getDesiredPosition() {
+	Position getDesiredPosition() {
 		return new Position(position.x + ghostDx, position.y + ghostDy);
 	}
 
-	public void setPosition(Position newGhostPosition) {
+	void setPosition(Position newGhostPosition) {
 		position = newGhostPosition;
 	}
 
-	public void changeDirection() {
+	void changeDirection() {
 		ghostDx = -1*ghostDx;
 		ghostDy = -1*ghostDy;
 	}
