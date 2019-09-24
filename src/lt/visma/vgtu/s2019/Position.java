@@ -7,12 +7,12 @@ package lt.visma.vgtu.s2019;
 public class Position {
 	int x;
 	int y;
-	
+
 	public Position(int x, int y) {
-		this.x=x;
-		this.y=y;
+		this.x = x;
+		this.y = y;
 	}
-	
+
 	public void moveDown() {
 		y += 1;
 	}

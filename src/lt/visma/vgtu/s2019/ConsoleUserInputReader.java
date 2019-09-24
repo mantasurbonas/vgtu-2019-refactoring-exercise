@@ -3,7 +3,8 @@ package lt.visma.vgtu.s2019;
 import java.io.IOException;
 
 /***
- * nuskaito vartotojo komandą - šioje versijoje iš klaviatūros, bet ateityje galės iš džoistiko ar pelės ir t.t.
+ * nuskaito vartotojo komandą - šioje versijoje iš klaviatūros, bet ateityje
+ * galės iš džoistiko ar pelės ir t.t.
  * 
  * @author mantas.urbonas
  *
@@ -13,16 +14,15 @@ public class ConsoleUserInputReader {
 	/***
 	 * gražina skaitinę įvestos komandos reikšmę, pvz., 'a', 's', 'd', 'w'
 	 * 
-	 *  nufiltruoja 'šiukšles', tokias kaip 'enter' klavišo paspaudimas.
-	 *  
+	 * nufiltruoja 'šiukšles', tokias kaip 'enter' klavišo paspaudimas.
+	 * 
 	 */
 	public static int readUserInput() throws IOException {
 		int character;
 		do {
 			character = System.in.read();
-		}while(character == '\n' || character == '\r');
+		} while (character == '\n' || character == '\r');
 		return character;
 	}
-
 
 }
