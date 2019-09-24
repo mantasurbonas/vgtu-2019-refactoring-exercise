@@ -32,10 +32,9 @@ public class GameRenderer {
 	}
 
 	private String getElementToDraw(int y, int x) {
-		if (pacman.position.x == x && pacman.position.y == y)
+		if (pacman.position.isEqual(x, y))
 			return "C";
-
-		if (ghost.position.x == x && ghost.position.y == y)
+		if (ghost.position.isEqual(x, y))
 			return "W";
 
 		int element = map.getMapElement(y, x);

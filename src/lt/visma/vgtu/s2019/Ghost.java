@@ -12,28 +12,19 @@ package lt.visma.vgtu.s2019;
  * keisti.
  *
  */
-public class Ghost {
-	Position position;
+public class Ghost extends Character {
+	Direction movementDirection;
 
-	int ghostDx = -1;
-	int ghostDy = 0;
-
-	public Ghost(int x, int y, int dx, int dy) {
-		this.position = new Position(x, y);
-		this.ghostDx = dx;
-		this.ghostDy = dy;
+	public Ghost(int x, int y, Direction movementDirection) {
+		super(x, y);
+		this.movementDirection = movementDirection;
 	}
 
 	public Position getDesiredPosition() {
-		return new Position(position.x + ghostDx, position.y + ghostDy);
-	}
-
-	public void setPosition(Position newGhostPosition) {
-		position = newGhostPosition;
+		return super.getPositionIfMoved(movementDirection);
 	}
 
 	public void changeDirection() {
-		ghostDx = -1 * ghostDx;
-		ghostDy = -1 * ghostDy;
+		movementDirection = movementDirection.opposite();
 	}
 }

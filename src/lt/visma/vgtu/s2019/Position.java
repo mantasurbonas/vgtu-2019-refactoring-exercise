@@ -13,20 +13,28 @@ public class Position {
 		this.y = y;
 	}
 
-	public void moveDown() {
-		y += 1;
+	public boolean isEqual(Position position) {
+		return this.x == position.x && this.y == position.y;
 	}
 
-	public void moveUp() {
-		y -= 1;
+	public boolean isEqual(int x, int y) {
+		return this.x == x && this.y == y;
 	}
 
-	public void moveRight() {
-		x += 1;
+	public void move(Direction direction) {
+		switch (direction) {
+		case UP:
+			y -= 1;
+			break;
+		case RIGHT:
+			x += 1;
+			break;
+		case DOWN:
+			y += 1;
+			break;
+		case LEFT:
+			x -= 1;
+			break;
+		}
 	}
-
-	public void moveLeft() {
-		x -= 1;
-	}
-
 }

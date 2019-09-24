@@ -19,14 +19,17 @@ public class GameRules {
 	}
 
 	public boolean isPacmanEaten() {
-		return pacman.position.x == ghost.position.x && ghost.position.y == pacman.position.y;
+		return ghost.position.isEqual(pacman.position);
 	}
 
-	public void processCommand(int command) {
+	public void processCommand(Command command) {
 		if (isEndGameCommand(command))
-			System.exit(0);
-
+			endGame();
 		movePacman(command);
+	}
+
+	public void endGame() {
+		System.exit(0);
 	}
 
 	public void moveGhost() {
@@ -38,34 +41,14 @@ public class GameRules {
 			ghost.changeDirection();
 	}
 
-	private boolean isEndGameCommand(int command) {
-		return command == 'q';
+	private boolean isEndGameCommand(Command command) {
+		return command == Command.QUIT;
 	}
 
-	private void movePacman(int command) {
-		Position pacmanDesiredPosition = changePositionByUserCommand(pacman.position, command);
+	private void movePacman(Command command) {
+		Position pacmanDesiredPosition = pacman.getPositionIfMoved(command.getDirection());
 
 		if (map.isEmpty(pacmanDesiredPosition))
-			pacman.moveTo(pacmanDesiredPosition);
-	}
-
-	private Position changePositionByUserCommand(Position oldPosition, int command) {
-		Position desiredPosition = new Position(oldPosition.x, oldPosition.y);
-
-		switch (command) {
-		case 'a':
-			desiredPosition.moveLeft();
-			break;
-		case 'd':
-			desiredPosition.moveRight();
-			break;
-		case 'w':
-			desiredPosition.moveUp();
-			break;
-		case 's':
-			desiredPosition.moveDown();
-			break;
-		}
-		return desiredPosition;
+			pacman.setPosition(pacmanDesiredPosition);
 	}
 }

@@ -80,8 +80,8 @@ public class Map {
 		return MAP[0].length;
 	}
 
-	public int getMapElement(Position where) {
-		return MAP[where.y][where.x];
+	public int getMapElement(Position position) {
+		return MAP[position.y][position.x];
 	}
 
 	public int getMapElement(int y, int x) {

@@ -17,12 +17,13 @@ public class ConsoleUserInputReader {
 	 * nufiltruoja 'šiukšles', tokias kaip 'enter' klavišo paspaudimas.
 	 * 
 	 */
-	public static int readUserInput() throws IOException {
+	public static Command readUserInput() throws IOException {
 		int character;
 		do {
 			character = System.in.read();
 		} while (character == '\n' || character == '\r');
-		return character;
+		Command command = Command.valueOf((char) character);
+		return command;
 	}
 
 }

@@ -10,14 +10,8 @@ package lt.visma.vgtu.s2019;
  * priklauso nuo platformos), tiesiog žino Pacmano būseną ir moka ją keisti.
  *
  */
-public class Pacman {
-	Position position;
-
+public class Pacman extends Character {
 	public Pacman(int x, int y) {
-		this.position = new Position(x, y);
-	}
-
-	public void moveTo(Position where) {
-		position = where;
+		super(x, y);
 	}
 }

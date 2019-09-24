@@ -10,24 +10,17 @@ public class ConsoleGameMain {
 
 	public static void main(String[] args) throws IOException {
 		Map map = new Map();
-		Pacman pacman = new Pacman(10, 10);
-		Ghost ghost = new Ghost(15, 12, -1, 0);
+		Pacman pacman = new Pacman(13, 10);
+		Ghost ghost = new Ghost(15, 10, Direction.LEFT);
 		GameRules rules = new GameRules(map, pacman, ghost);
-
 		GameRenderer renderer = new GameRenderer(map, pacman, ghost);
-
-		while (true) {
+		while (!rules.isPacmanEaten()) {
 			renderer.drawFrame();
-
-			if (rules.isPacmanEaten())
-				System.exit(0);
-
 			rules.moveGhost();
-
-			int command = ConsoleUserInputReader.readUserInput();
-
+			Command command = ConsoleUserInputReader.readUserInput();
 			rules.processCommand(command);
 		}
+		rules.endGame();
 	}
 
 }
