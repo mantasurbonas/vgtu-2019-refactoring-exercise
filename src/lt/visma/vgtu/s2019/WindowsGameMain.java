@@ -24,7 +24,7 @@ public class WindowsGameMain extends JFrame{
 		super.pack();
 		super.setVisible(true);
 		super.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-		super.addKeyListener(new Keyboard(rules)); 
+		super.addKeyListener(new Keyboard(this));
 		event.update();
 	}
         

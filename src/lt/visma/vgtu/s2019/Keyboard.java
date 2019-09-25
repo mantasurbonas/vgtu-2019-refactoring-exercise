@@ -5,9 +5,11 @@ import java.awt.event.KeyListener;
 
 public class Keyboard implements KeyListener{
     GameRules rules;
+    WindowsGameMain main;
 
-    public Keyboard(GameRules rules) {
-        this.rules = rules;
+    public Keyboard(WindowsGameMain main){
+        this.rules = main.rules;
+        this.main = main;
     }
     
     @Override
@@ -17,6 +19,8 @@ public class Keyboard implements KeyListener{
 
             if (rules.isPacmanEaten())
                     System.exit(0);
+            main.repaint();
+
     }
 
     @Override
