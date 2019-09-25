@@ -1,17 +1,10 @@
 package lt.visma.vgtu.s2019;
 
-/***
- * Užtikrina žaidimo taisyklių laikymąsi: 
- *  Pacmano judėjimą per žemėlapį pagal vartotojo komandas
- *  vaiduokliuko judėjimą
- *  nustato, ar žaidimas jau baigtas (ar vaiduokliukas suvalgė pacmaną)
- *  
- */
 public class GameRules {
 
-	private Ghost ghost;
-	private Pacman pacman;
-	private Map map;
+	Ghost ghost;
+	Pacman pacman;
+	Map map;
 
 	public GameRules(Map map, Pacman pacman, Ghost ghost) {
 		this.map = map;

@@ -1,9 +1,5 @@
 package lt.visma.vgtu.s2019;
 
-/***
- * abstraktus duomenų tipas - "x ir y koordinatė" 2d erdvėje.
- *
- */
 public class Position {
 	int x;
 	int y;

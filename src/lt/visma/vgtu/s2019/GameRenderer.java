@@ -1,13 +1,5 @@
 package lt.visma.vgtu.s2019;
 
-/***
- * Nupiešia ekrane žaidimo žemėlapį ir jame esančius personažus.
- * 
- * Šioje versijoje "piešia" raidelėmis į konsolę, bet ateityje gali piešti ir 2D ar 3D ar web grafiką. 
- * 
- * @author mantas.urbonas
- *
- */
 public class GameRenderer {
 
 	private Map map;

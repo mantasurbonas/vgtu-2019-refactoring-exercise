@@ -2,10 +2,6 @@ package lt.visma.vgtu.s2019;
 
 import java.io.IOException;
 
-/***
- * programos pradžia (t.y. konsolinio žaidimo pagrindinė logika) 
- *
- */
 public class ConsoleGameMain {
 	
 	public static void main(String[] args) throws IOException{
