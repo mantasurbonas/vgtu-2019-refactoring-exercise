@@ -11,22 +11,22 @@ public class Keyboard implements KeyListener{
         this.rules = main.rules;
         this.main = main;
     }
-    
+
     @Override
     public void keyTyped(KeyEvent e) {
-            char command = e.getKeyChar();
-            rules.processCommand(command);
+        char command = e.getKeyChar();
+        rules.processCommand(command);
 
-            if (rules.isPacmanEaten())
-                    System.exit(0);
-            main.repaint();
+        if (rules.isPacmanEaten())
+            System.exit(0);
+        main.repaint();
 
     }
 
     @Override
-    public void keyReleased(KeyEvent e) {}			
+    public void keyReleased(KeyEvent e) {}
 
     @Override
     public void keyPressed(KeyEvent e) {}
-    
+
 }

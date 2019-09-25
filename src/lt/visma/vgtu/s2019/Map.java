@@ -1,14 +1,7 @@
 package lt.visma.vgtu.s2019;
 
-
-import java.awt.Image;
-import java.awt.image.BufferedImage;
-import java.io.FileInputStream;
-import java.io.IOException;
-import javax.imageio.ImageIO;
-
 public class Map {
-        private BufferedImage wallImg;
+
 	private int MAP[][] = {
 			{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,},
 			{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,},
@@ -38,15 +31,7 @@ public class Map {
 			{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,},
 			{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,},
 			{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,},
-			};
-
-        public Map()  {
-            return;
-        }
-        
-        public Map(String image) throws IOException {
-            this.wallImg = wallImg = ImageIO.read(new FileInputStream(image));;
-        }
+	};
 
 
 	public int getHeight() {
@@ -56,7 +41,7 @@ public class Map {
 	public int getWidth() {
 		return MAP[0].length;
 	}
-	
+
 	public int getMapElement(Position where) {
 		return MAP[where.y][where.x];
 	}
@@ -64,13 +49,9 @@ public class Map {
 	public int getMapElement(int y, int x) {
 		return MAP[y][x];
 	}
-	
+
 	public boolean isEmpty(Position where) {
 		return getMapElement(where) == 0;
 	}
-
-        public Image getImage() {
-            return wallImg;
-        }
 
 }

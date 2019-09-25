@@ -10,15 +10,25 @@ import javax.swing.WindowConstants;
 //Laimonas Janutėnas PRIF - 17/1
 
 public class WindowsGameMain extends JFrame{
-        private String imageDirectory = "/Users/katinas/NetBeansProjects/vgtu-2019-refactoring-exercise/pacman/src/lt/visma/vgtu/s2019/"; //Mac OS reikia nurodyti pilna direktorija
 
-	Map map = new Map(imageDirectory + "wall.png");
-	Pacman pacman = new Pacman(10, 10, imageDirectory + "pacman-open.png");
-	Ghost ghost = new Ghost(15, 12, -1, 0, imageDirectory + "ghost.png");
+
+	Map map = new Map();
+	Pacman pacman = new Pacman(10, 10);
+	Ghost ghost = new Ghost(15, 12, -1, 0);
 	GameRules rules = new GameRules(map, pacman, ghost);
-        Window window = new Window(map, pacman, ghost);
-        GameEvent event = new GameEvent(this);
-	
+	Window window = new Window(map, pacman, ghost);
+	GameEvent event = new GameEvent(this);
+
+
+	//Mac OS reikia nurodyti pilna direktorija
+	String imageDirectory = "/Users/katinas/NetBeansProjects/vgtu-2019-refactoring-exercise/pacman/src/lt/visma/vgtu/s2019/";
+
+	window.setWallImg(imageDirectory + "wall.png");
+	window.setPacmanImg(imageDirectory + "pacman-open.png");
+	window.setGhostImg(imageDirectory + "ghost.png");
+
+	window.getImage();
+
 	public WindowsGameMain() throws Exception {
 		super.setPreferredSize(new Dimension(1200, 600));
 		super.pack();
@@ -27,11 +37,11 @@ public class WindowsGameMain extends JFrame{
 		super.addKeyListener(new Keyboard(this));
 		event.update();
 	}
-        
+
 	@Override
 	public void paint(Graphics g) {
 		super.paint(g);
-		
+
 		for (int y=0; y<map.getHeight(); y++) {
 			for (int x=0; x<map.getWidth();x++) {
 				window.drawElement(g, x, y);
@@ -40,16 +50,16 @@ public class WindowsGameMain extends JFrame{
 	}
 
 	public static void main(String[] args) throws Exception {
-            SwingUtilities.invokeAndWait(new Runnable() {
-                @Override
-                public void run() {
-                        try {
-                            new WindowsGameMain();
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
-                }
-            });
+		SwingUtilities.invokeAndWait(new Runnable() {
+			@Override
+			public void run() {
+				try {
+					new WindowsGameMain();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
 	}
 
 }
