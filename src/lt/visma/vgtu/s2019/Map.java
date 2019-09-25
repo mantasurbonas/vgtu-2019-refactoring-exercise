@@ -1,21 +1,12 @@
 package lt.visma.vgtu.s2019;
 
+
 import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.FileInputStream;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 
-/***
- * dvimačio žaidimo žemėlapis (modelis).
- * 
- * žino savo plotį, aukštį, ir gali pasakyti, koks žemėlapio elementas yra konkrečioje koordinatėje.
- * 
- * ateityje galima pridėti funkcionalumo išsisaugoti į failą ir t.t.
- * 
- * Nesirūpina, kaip save atvaizduoti ekrane, nes modelio atvaizdavimas ekrane priklauso nuo konkrečios platformos (konsolė, GUI, web, VR ir t.t.)
- *
- */
 public class Map {
         private BufferedImage wallImg;
 	private int MAP[][] = {

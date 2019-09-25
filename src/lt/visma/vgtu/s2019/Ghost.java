@@ -6,17 +6,6 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 
-
-/***
- *  Reprezentuoja "Vaiduokliuko" veikėjo abstrakciją.
- * 
- *  Šioje versijoje turi savo poziciją, į kurią gali persikelti, ir judėjimo kryptį, 
- *  bet ateityje gali žinoti savo "gyvybių" skaičių, "agresijos" būseną ir t.t.
- *  
- *  Ši klasė nesirūpina, kaip vaiduokliuką atvaizduoti ekrane (piešimas labai priklauso nuo platformos), 
- *  tiesiog žino vaiduokliuko būseną ir moka ją keisti.
- *
- */
 public class Ghost{
 	Position position;
 	private BufferedImage ghostImg;
