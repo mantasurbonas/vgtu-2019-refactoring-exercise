@@ -19,15 +19,8 @@ public class WindowsGameMain extends JFrame{
 	Window window = new Window(map, pacman, ghost);
 	GameEvent event = new GameEvent(this);
 
-
 	//Mac OS reikia nurodyti pilna direktorija
-	String imageDirectory = "/Users/katinas/NetBeansProjects/vgtu-2019-refactoring-exercise/pacman/src/lt/visma/vgtu/s2019/";
-
-	window.setWallImg(imageDirectory + "wall.png");
-	window.setPacmanImg(imageDirectory + "pacman-open.png");
-	window.setGhostImg(imageDirectory + "ghost.png");
-
-	window.getImage();
+	String imageDirectory = "/Users/katinas/git/vgtu-2019-refactoring-exercise/";
 
 	public WindowsGameMain() throws Exception {
 		super.setPreferredSize(new Dimension(1200, 600));
@@ -35,6 +28,11 @@ public class WindowsGameMain extends JFrame{
 		super.setVisible(true);
 		super.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		super.addKeyListener(new Keyboard(this));
+		
+		window.setWallImg(imageDirectory + "wall.png");
+		window.setPacmanImg(imageDirectory + "pacman-open.png");
+		window.setGhostImg(imageDirectory + "ghost.png");
+		
 		event.update();
 	}
 
