@@ -23,102 +23,47 @@ import javax.swing.WindowConstants;
  *
  */
 public class WindowsGameMain extends JFrame{
+        private String imageDirectory = "/Users/katinas/NetBeansProjects/vgtu-2019-refactoring-exercise/pacman/src/pacman/"; //Mac OS reikia nurodyti pilna direktorija
 
-	private BufferedImage pacmanImg;
-	private BufferedImage ghostImg;
-	private BufferedImage wallImg;
-
-	Map map = new Map();
-	Pacman pacman = new Pacman(10,10 );
-	Ghost ghost = new Ghost(15, 12, -1, 0);
+	Map map = new Map(imageDirectory + "wall.png");
+	Pacman pacman = new Pacman(10, 10, imageDirectory + "pacman-open.png");
+	Ghost ghost = new Ghost(15, 12, -1, 0, imageDirectory + "ghost.png");
 	GameRules rules = new GameRules(map, pacman, ghost);
+        Window window = new Window(map, pacman, ghost);
+        GameEvent event = new GameEvent(this);
 	
 	public WindowsGameMain() throws Exception {
 		super.setPreferredSize(new Dimension(1200, 600));
 		super.pack();
 		super.setVisible(true);
 		super.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+		super.addKeyListener(new Keyboard(rules)); 
+		event.update();
 		
-		pacmanImg = ImageIO.read(new FileInputStream("pacman-open.png"));
-		ghostImg = ImageIO.read(new FileInputStream("ghost.png"));
-		wallImg = ImageIO.read(new FileInputStream("wall.png"));
-		
-		super.addKeyListener(new KeyListener() {
-			
-			@Override
-			public void keyTyped(KeyEvent e) {
-				char command = e.getKeyChar();
-				rules.processCommand(command);
-				
-				if (rules.isPacmanEaten())
-					System.exit(0);
-				
-				repaint();
-			}
-			
-			@Override
-			public void keyReleased(KeyEvent e) {}			
-			
-			@Override
-			public void keyPressed(KeyEvent e) {}
-		});
-		
-		new Timer(300, new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				rules.moveGhost();
-				if (rules.isPacmanEaten())
-					System.exit(0);
-				repaint();
-			}
-		}).start();
 	}
-
+        
 	@Override
 	public void paint(Graphics g) {
 		super.paint(g);
 		
 		for (int y=0; y<map.getHeight(); y++) {
 			for (int x=0; x<map.getWidth();x++) {
-				drawElement(g, x, y);
+				window.drawElement(g, x, y);
 			}
 		}
 	}
-	
-	private void drawElement(Graphics g, int x, int y) {
-		Image image = getImage(x, y);
-		if (image != null)
-			g.drawImage(image, 50+x*20, 50+y*20, 20, 20, null);
-	}
-	
-	private Image getImage(int x, int y) {
-		if (pacman.position.x == x && pacman.position.y == y) 
-			return pacmanImg;
-		
-		if (ghost.position.x == x && ghost.position.y == y)
-			return ghostImg;
-			
-		int element = map.getMapElement(y, x);
-		
-		if (element == 0)
-			return null;
-
-		return wallImg;
-	}
 
 	public static void main(String[] args) throws Exception {
-		SwingUtilities.invokeAndWait(new Runnable() {
-			
-			@Override
-			public void run() {
-				try {
-					new WindowsGameMain();
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
+            SwingUtilities.invokeAndWait(new Runnable() {
+                @Override
+                public void run() {
+                        try {
+                            new WindowsGameMain();
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                }
+            });
 	}
 
 }

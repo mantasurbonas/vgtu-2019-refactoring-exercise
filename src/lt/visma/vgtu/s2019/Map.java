@@ -1,5 +1,11 @@
 package lt.visma.vgtu.s2019;
 
+import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.io.FileInputStream;
+import java.io.IOException;
+import javax.imageio.ImageIO;
+
 /***
  * dvimačio žaidimo žemėlapis (modelis).
  * 
@@ -11,7 +17,7 @@ package lt.visma.vgtu.s2019;
  *
  */
 public class Map {
-
+        private BufferedImage wallImg;
 	private int MAP[][] = {
 			{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,},
 			{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,},
@@ -43,6 +49,14 @@ public class Map {
 			{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,},
 			};
 
+        public Map()  {
+            return;
+        }
+        
+        public Map(String image) throws IOException {
+            this.wallImg = wallImg = ImageIO.read(new FileInputStream(image));;
+        }
+
 
 	public int getHeight() {
 		return MAP.length;
@@ -63,5 +77,9 @@ public class Map {
 	public boolean isEmpty(Position where) {
 		return getMapElement(where) == 0;
 	}
+
+        public Image getImage() {
+            return wallImg;
+        }
 
 }
