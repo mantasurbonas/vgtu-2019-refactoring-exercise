@@ -7,34 +7,34 @@ package lt.visma.vgtu.s2019;
  *  nustato, ar žaidimas jau baigtas (ar vaiduokliukas suvalgė pacmaną)
  *  
  */
-public class GameRules {
+class GameRules {
 
 	private Ghost ghost;
 	private Pacman pacman;
 	private Map map;
 
-	public GameRules(Map map, Pacman pacman, Ghost ghost) {
+	GameRules(Map map, Pacman pacman, Ghost ghost) {
 		this.map = map;
 		this.pacman = pacman;
 		this.ghost = ghost;
 	}
 	
-	public boolean isPacmanEaten() {
+	boolean isPacmanEaten() {
 		return pacman.position.x == ghost.position.x && ghost.position.y == pacman.position.y;
 	}
 	
-	public void processCommand(int command) {
+	void processCommand(int command) {
 		if (isEndGameCommand(command))
 			System.exit(0);
 		
 		movePacman(command);
 	}
 
-	public void moveGhost() {
+	void moveGhost() {
 		Position ghostDesiredPosition = ghost.getDesiredPosition();
 		
 		if (map.isEmpty(ghostDesiredPosition))
-			ghost.setPosition(ghostDesiredPosition);
+			ghost.moveTo(ghostDesiredPosition);
 		else
 			ghost.changeDirection();
 	}

@@ -1,5 +1,7 @@
 package lt.visma.vgtu.s2019;
 
+import java.awt.*;
+
 /***
  *  Reprezentuoja "Pacmano" veikėjo abstrakciją.
  * 
@@ -10,14 +12,10 @@ package lt.visma.vgtu.s2019;
  *  tiesiog žino Pacmano būseną ir moka ją keisti.
  *
  */
-public class Pacman {
-	Position position;
+class Pacman extends Player {
 
-	public Pacman(int x, int y) {
+	Pacman(int x, int y) {
 		this.position = new Position(x, y);
 	}
 
-	public void moveTo(Position where) {
-		position = where;
-	}
 }
